@@ -19,7 +19,7 @@ def imgproxy(
         source_url = base64.urlsafe_b64encode(source_url.encode()).rstrip(b"=").decode()
 
         if b64_filename:
-            source_url += "/" + urllib.parse.quote(b64_filename)
+            source_url += "/" + urllib.parse.quote(b64_filename, safe="")
         elif extension:
             source_url += "." + extension
     else:
