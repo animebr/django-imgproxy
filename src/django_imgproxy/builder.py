@@ -46,7 +46,10 @@ def imgproxy(
                 "%s%s%s" % (option, settings.IMGPROXY_ARGUMENTS_SEPARATOR, arguments)
             )
 
-    path = "/%s/%s" % ("/".join(processing_options), source_url)
+    if processing_options:
+        path = "/%s/%s" % ("/".join(processing_options), source_url)
+    else:
+        path = "/" + source_url
 
     if settings.IMGPROXY_SIGN_URL:
         digest = hmac.digest(
