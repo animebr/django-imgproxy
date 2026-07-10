@@ -31,6 +31,7 @@ def imgproxy(
             source_url += "@" + extension
         source_url = "plain/" + source_url
 
+    kwargs = settings.IMGPROXY_DEFAULT_PROCESSING_OPTIONS | kwargs
     processing_options = []
     if settings.IMGPROXY_ONLY_PRESETS:
         if presets := kwargs.get("preset", kwargs.get("pr")):

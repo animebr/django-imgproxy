@@ -5,6 +5,9 @@ IMGPROXY_BASE_URL = getattr(
 ).rstrip("/")
 IMGPROXY_ONLY_PRESETS = getattr(settings, "IMGPROXY_ONLY_PRESETS", False)
 IMGPROXY_ARGUMENTS_SEPARATOR = getattr(settings, "IMGPROXY_ARGUMENTS_SEPARATOR", ":")
+IMGPROXY_DEFAULT_PROCESSING_OPTIONS = getattr(
+    settings, "IMGPROXY_DEFAULT_PROCESSING_OPTIONS", {}
+)
 IMGPROXY_KEY = bytes.fromhex(getattr(settings, "IMGPROXY_KEY", ""))
 IMGPROXY_SALT = bytes.fromhex(getattr(settings, "IMGPROXY_SALT", ""))
 IMGPROXY_SIGN_URL = bool(IMGPROXY_KEY) and bool(IMGPROXY_SALT)
