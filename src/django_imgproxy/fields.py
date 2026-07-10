@@ -6,7 +6,10 @@ from django.db.models.fields.files import ImageField, ImageFieldFile
 from django.utils import timezone
 
 from django_imgproxy.builder import imgproxy
-from django_imgproxy.settings import IMGPROXY_IMAGEFIELD_URL_TTL
+from django_imgproxy.settings import (
+    IMGPROXY_IMAGEFIELD_PROCESSING_OPTIONS,
+    IMGPROXY_IMAGEFIELD_URL_TTL,
+)
 
 
 class ImgProxyImageFieldFile(ImageFieldFile):
@@ -14,7 +17,7 @@ class ImgProxyImageFieldFile(ImageFieldFile):
     def url(self) -> str:
         self._require_file()
 
-        processing_options = {"raw": "true"}
+        processing_options = IMGPROXY_IMAGEFIELD_PROCESSING_OPTIONS.copy()
         if ttl := IMGPROXY_IMAGEFIELD_URL_TTL:
             processing_options["expires"] = int(
                 (timezone.now() + timedelta(seconds=ttl)).timestamp()
